@@ -30,9 +30,5 @@ cask "cxpatcher" do
     USE AT YOUR OWN RISK!
 
     This will also void any official support from CodeWeavers.
-
-    It is recommended to install the gstreamer cask alongside.
-
-      brew install --cask gstreamer
   EOS
 end
