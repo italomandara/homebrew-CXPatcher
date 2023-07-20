@@ -12,6 +12,8 @@ cask "cxpatcher" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  depends_on cask: "gstreamer"
+
   app "CXPatcher.app"
 
   zap trash: [
