@@ -12,7 +12,7 @@ cask "cxpatcher" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
-  depends_on cask: "gstreamer"
+  depends_on cask: "italomandara/CXPatcher/gstreamer"
 
   app "CXPatcher.app"
 
