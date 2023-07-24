@@ -1,0 +1,18 @@
+name: bump-gstreamer-cask
+on:
+  schedule:
+    - cron:  '0 12 */14 * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  bump-casks:
+    runs-on: macos-latest
+    steps:
+    - uses: macauley/action-homebrew-bump-cask@v1
+      with:
+        token: ${{secrets.BUMP_CASK_TOKEN}}
+        tap: italomandara/homebrew-CXPatcher
+        cask: gstreamer
+        livecheck: true
+        dryrun: false
