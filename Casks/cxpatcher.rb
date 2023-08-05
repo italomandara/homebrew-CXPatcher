@@ -1,6 +1,6 @@
 cask "cxpatcher" do
-  version "0.2.21"
-  sha256 "f0f4712e3e652fa0fd696c2547c922bb8a912e1cd4ac1b686f8d7515a566e11b"
+  version "0.2.22"
+  sha256 "f216c0efa297d976042cc33b88169236277b2a8e0dc873ae33c8ea5a4ec8a964"
 
   url "https://github.com/italomandara/CXPatcher/releases/download/V#{version}/CXPatcher.app.zip"
   name "CXPatcher"
