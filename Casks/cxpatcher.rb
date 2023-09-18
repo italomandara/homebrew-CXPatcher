@@ -2,14 +2,14 @@ cask "cxpatcher" do
   version "0.3.1"
   sha256 "5fab61885d554cbcec88791ca9f53c0cc41d793a54b932312c9c07eff6732daa"
 
-  url "https://github.com/italomandara/CXPatcher/releases/download/v#{version}/CXPatcher.app.zip"
+  url "https://github.com/italomandara/CXPatcher/releases/download/V#{version}/CXPatcher.app.zip"
   name "CXPatcher"
   desc "Patcher to upgrade CrossOver dependencies and improve compatibility"
   homepage "https://github.com/italomandara/CXPatcher"
 
   livecheck do
-    url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    url :url
+    strategy :github_latest
   end
 
   depends_on cask: "italomandara/CXPatcher/gstreamer"
