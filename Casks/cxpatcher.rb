@@ -12,7 +12,9 @@ cask "cxpatcher" do
     strategy :github_latest
   end
 
-  depends_on cask: "italomandara/CXPatcher/gstreamer"
+  conflicts_with cask: "italomandara/CXPatcher/gstreamer"
+  
+  depends_on cask: "gstreamer-runtime"
 
   app "CXPatcher.app"
 
