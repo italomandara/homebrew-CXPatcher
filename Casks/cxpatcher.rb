@@ -11,8 +11,6 @@ cask "cxpatcher" do
     url :url
     strategy :github_latest
   end
-
-  conflicts_with cask: "italomandara/CXPatcher/gstreamer"
   
   depends_on cask: "gstreamer-runtime"
 
