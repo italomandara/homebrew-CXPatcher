@@ -1,6 +1,6 @@
 cask "cxpatcher" do
-  version "0.3.6"
-  sha256 "670bc5a2e6f78e5c5c5bf02675109cd295dc63ef16454bb134fdce7a38fed765"
+  version "0.4.5"
+  sha256 "f1ccd223291f67622bb6e4a887171d382f914c4dfaab04b780195a2d821f754a"
 
   url "https://github.com/italomandara/CXPatcher/releases/download/V#{version}/CXPatcher.app.zip"
   name "CXPatcher"
@@ -11,7 +11,7 @@ cask "cxpatcher" do
     url :url
     strategy :github_latest
   end
-  
+
   depends_on cask: "gstreamer-runtime"
 
   app "CXPatcher.app"
