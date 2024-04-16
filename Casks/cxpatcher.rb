@@ -1,8 +1,8 @@
 cask "cxpatcher" do
-  version "0.4.10"
-  sha256 "2db06ab665af95f2108b9b6ede46706084c531b30eaf88bf4dda0d809f5520d7"
+  version "0.5"
+  sha256 "27bdf2bb04a40930478b35987ea3c80b7e0f8f490b22a2f89fc0a7526f8c77b0"
 
-  url "https://github.com/italomandara/CXPatcher/releases/download/V#{version}/CXPatcher.app.zip"
+  url "https://github.com/italomandara/CXPatcher/releases/download/v#{version}/CXPatcher.app.zip"
   name "CXPatcher"
   desc "Patcher to upgrade CrossOver dependencies and improve compatibility"
   homepage "https://github.com/italomandara/CXPatcher"
