@@ -9,11 +9,15 @@ jobs:
   bump-casks:
     runs-on: macos-latest
     steps:
-    - uses: macauley/action-homebrew-bump-cask@v1
-      with:
-        token: ${{secrets.BUMP_CASK_TOKEN}}
-        tap: italomandara/homebrew-CXPatcher
-        cask: cxpatcher
-        livecheck: true
-        dryrun: false
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Bump Cask
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.BUMP_CASK_TOKEN }}
+        run: |
+          brew install-bundler-gems
+          LATEST_VERSION=$(brew livecheck cxpatcher --json | jq -r '.[0].version.latest')
+          echo "Latest version found: $LATEST_VERSION"
+          brew bump-cask-pr --version="$LATEST_VERSION" italomandara/cxpatcher/cxpatcher
         
