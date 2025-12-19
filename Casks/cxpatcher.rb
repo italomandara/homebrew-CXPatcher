@@ -13,6 +13,7 @@ cask "cxpatcher" do
   end
 
   depends_on cask: "gstreamer-runtime"
+  depends_on macos: ">= :ventura"
 
   app "CXPatcher.app"
 
