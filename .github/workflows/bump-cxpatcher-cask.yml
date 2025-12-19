@@ -1,8 +1,7 @@
 name: bump-cxpatcher-cask
 on:
   schedule:
-    - cron:  '0 8 * * *'
-  # Allows you to run this workflow manually from the Actions tab
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,12 +11,29 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Bump Cask
+      - name: Update Cask
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.BUMP_CASK_TOKEN }}
         run: |
+          # 1. Fix Ruby/AST dependencies
           brew install-bundler-gems
-          LATEST_VERSION=$(brew livecheck cxpatcher --json | jq -r '.[0].version.latest')
-          echo "Latest version found: $LATEST_VERSION"
+
+          # 2. Extract versions
+          # Get what's available on GitHub
+          LATEST_VERSION=$(brew livecheck italomandara/cxpatcher/cxpatcher --json | jq -r '.[0].version.latest')
+          
+          # Get what is currently in your Repo
+          CURRENT_VERSION=$(brew info --json=v2 italomandara/cxpatcher/cxpatcher | jq -r '.casks[0].version')
+
+          echo "Version on GitHub: $LATEST_VERSION"
+          echo "Version in your Tap: $CURRENT_VERSION"
+
+          # 3. Only run if a new version is actually found
+          if [ "$LATEST_VERSION" = "$CURRENT_VERSION" ]; then
+            echo "No new version found. Skipping bump."
+            exit 0
+          fi
+
+          # 4. Perform the bump
+          # Using full tap/cask path to avoid ambiguity
           brew bump-cask-pr --version="$LATEST_VERSION" italomandara/cxpatcher/cxpatcher
-        
