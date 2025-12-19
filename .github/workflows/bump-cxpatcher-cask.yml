@@ -9,16 +9,15 @@ jobs:
   bump-casks:
     runs-on: macos-latest
     steps:
-      # Fix for the rubocop-ast LoadError
-      - name: Install Homebrew developer dependencies
-        run: brew install-bundler-gems
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
 
-      - name: Bump CXPatcher Cask
-        uses: macauley/action-homebrew-bump-cask@v1
-        with:
-          token: ${{ secrets.BUMP_CASK_TOKEN }}
-          tap: italomandara/homebrew-CXPatcher
-          cask: cxpatcher
-          livecheck: true
-          dryrun: false
+      - name: Bump Cask
+        env:
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.BUMP_CASK_TOKEN }}
+        run: |
+          # Install the missing gems right before the command
+          brew install-bundler-gems
+          # Run the official bump command
+          brew bump-cask-pr --version=$(brew livecheck cxpatcher --json | jq -r '.[0].version.latest') --tap=italomandara/homebrew-CXPatcher cxpatcher
         
